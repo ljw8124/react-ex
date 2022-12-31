@@ -71,7 +71,7 @@ React.createElement(
 React.createElement(
   "ul",
   { className: "ingredients" },
-  items.map((ingredient, i) =>
+  itmes.map((ingredient, i) =>
     React.createElement("li", { key: i }, ingredient)
   )
 );
