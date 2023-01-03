@@ -78,5 +78,57 @@ React.createElement(
 
 JSX 에 대해서 공부할 때 키에 대해 더 공부하도록 하자.
 
+- 리액트 컴포넌트
+모든 사용자의 인터페이스는 여러 부분으로 이뤄진다. 기계로 예를 들자면, 여러 부품이 모여서 한 제품을 이루는 것과 비슷하다.
+리액트에서는 이런 각 부분을 '컴포넌트' 라고 한다.
+
+컴포넌트를 적절하게 사용하면 서로 다른 데이터 집합에 대해 같은 DOM 구조를 재사용할 수 있다.
+
+리액트는 함수를 작성해 컴포넌트를 만든다. 함수는 사용자 인터페이스에서 재활용할 수 있는 부품을 반환한다.
+
+ex)
+const secretIngredients = [
+  "무염 버터 1컵",
+  "크런치 땅콩 버터 1컵",
+  "흑설탕 1컵",
+  "백설탕 1컵",
+  "달걀 2개",
+  "일반 밀가루 2.5컵",
+  "베이킹 소다 1티스푼",
+  "소금 0.5티스푼"
+];
+
+function IngredientsList() {
+  return React.createElements(
+    "ul",
+    { className: "ingredients" },
+    items.map((ingredient, i) => {
+      React.createElement("li", { key: i }, ingredient)
+    });
+  )
+}
+
+그 후 secretIngredients 를 items 라는 프로퍼티로 넘긴다.
+
+ReactDOM.render(
+  React.createElement(IngredientsList, { items: secretIngredients }, null),
+  document.getElementById("root")
+);
+
+이런식으로 컴포넌트를 만들면 더 유연한 컴포넌트를 만들 수 있다.
+
+전역으로 매핑하는 것이 아니라 파라미터로 넘겨서 코드를 작성하는 것이 좋다.
+
+function IngredientsList({ items }) {
+  return React.createElements(
+    "ul",
+    { className: "ingredients" },
+    items.map((ingredient, i) => {
+      React.createElement("li", { key: i }, ingredient)
+    });
+  )
+}
+
+createClass 와 클래스 컴포넌트를 걸치면서 지금의 방식이 등장하였다.
 
 */
