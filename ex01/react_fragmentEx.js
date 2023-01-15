@@ -18,7 +18,7 @@ function Cat ({ name }) {
 // 이로 인해 불필요한 태그가 만들어지고, 아무 목적도 없이 다른 태그를 감싸는 태그가 생기는데,
 // 리액트 프래그먼트는 새로운 태그를 실제로 만들지 않고 래퍼의 동작을 흉내낼 수 있다.
 
-function cat ({ name }) {
+function cat({ name }) {
   return (
     <React.Fragment>
       <h1>고양이 이름은 {name} 입니다.</h1>
