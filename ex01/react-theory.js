@@ -195,7 +195,7 @@ transformScriptTags.ts:252 You are using the in-browser Babel transformer. Be su
 
 JSX 의 단점은 브라우저가 JSX 를 해석하지 못한다는 점이다. 따라서 JSX 는 순수 리액트로 변경해야 한다.
 
-
+ReactDom 은 React element 를 HTML 안에 넣도록 도와주는 도구이다.
 
 
 
