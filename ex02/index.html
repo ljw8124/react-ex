@@ -13,20 +13,20 @@
 <script>
   // 원시적인 React element 만드는법
   const root = document.querySelector("#root");
-  const span = React.createElement(
+  const title = React.createElement(
           "h3",
           {
             id:"title",
             style:{color: "red"},
             onMouseEnter: () => console.log("mouse entered")
           },
-          "Hello I'm a span"
+          "Hello I'm a title"
   );
   const btn = React.createElement("button", {
     // react 방식으로 event 부여하는 방법
     onClick: () => console.log("I'm clicked")
   }, "click me");
-  const container = React.createElement("div", null, [span, btn]);
+  const container = React.createElement("div", null, [title, btn]); // 만들 element, property, render 할 child element
   ReactDOM.render(container, root);
 
 </script>
