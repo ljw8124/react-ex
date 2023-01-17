@@ -15,7 +15,11 @@
   const root = document.querySelector("#root");
   const span = React.createElement(
           "h3",
-          { id:"title", style:{color: "red"}, onMouseEnter: () => console.log("mouse entered") },
+          {
+            id:"title",
+            style:{color: "red"},
+            onMouseEnter: () => console.log("mouse entered")
+          },
           "Hello I'm a span"
   );
   const btn = React.createElement("button", {
