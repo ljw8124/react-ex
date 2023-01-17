@@ -11,13 +11,19 @@
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script>
+  // 원시적인 React element 만드는법
   const root = document.querySelector("#root");
   const span = React.createElement(
-          "span",
-          { id:"temp-span", style:{color: "red"} },
+          "h3",
+          { id:"title", style:{color: "red"}, onMouseEnter: () => console.log("mouse entered") },
           "Hello I'm a span"
-  ); // 원시적인 React element 만드는법
-  ReactDOM.render(span, root);
+  );
+  const btn = React.createElement("button", {
+    // react 방식으로 event 부여하는 방법
+    onClick: () => console.log("I'm clicked")
+  }, "click me");
+  const container = React.createElement("div", null, [span, btn]);
+  ReactDOM.render(container, root);
 
 </script>
 </html>
