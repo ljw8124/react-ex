@@ -40,25 +40,30 @@
   //   // code
   // }
 
-  function App() {
+  const App = () => {
     // const data = React.useState(0);
     // const counter = data[0];
     // const countUpFunc = data[1];
     // 위 방식보다는 구조분해할당을 이용
 
-    let [counter, setCounter] = React.useState(0) // useState 에서 첫 번째 요소는 담으려는 value 이고 두 번째 요소는 value 바꿀 때 필요한 함수이다
+    const [counter, setCounter] = React.useState(0) // useState 에서 첫 번째 요소는 담으려는 value 이고 두 번째 요소는 value 바꿀 때 필요한 함수이다
     const onClick = () => {
-      setCounter(counter + 1);
+      // setCounter(counter + 1);
+      // 위에 reRender 방식과 다르게 전체를 모두 render 하는 것이 아니라
+      // counter 부분만 render 하는 방식
+
+      // 아래 방식은 현재값이라는 것을 정확히 명시하므로 더안전한 방법이라고 할 수 있음
+      setCounter((current) => current + 1);
     };
     return (
         <div>
           <h3>Total clicks: {counter}</h3>
-          <button onClick={onClick}>Click Me</button>
+          <button onClick={onClick}>Click me</button>
         </div>
     );
   }
-
   ReactDOM.render(<App />, rootDiv);
+
 </script>
 
 </html>
