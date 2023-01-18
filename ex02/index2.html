@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+  const rootDiv = document.querySelector("#root");
+
+  let counter = 0;
+  const countApp = () => {
+    counter += 1;
+    render();
+  }
+  const render = () => {
+    ReactDOM.render(<Container />, rootDiv);
+  }
+  // state 는 요소를 변경하는 도구이다.
+  const Container = () => (
+          <div>
+            <h3>Total click : {counter}</h3>
+            <button onClick={countApp}>Click ME!</button>
+          </div>
+  );
+  render();
+  // 위 방식은 Container 를 한 번만 랜더링하므로 counter 가 업데이트 되지 않는다.
+  // 그러므로 counter 가 업데이트 될 때마다 리랜더링 해주어야 한다 -> countApp 에 render 추가
+  // 그 후 코드 재사용을 위해 ReactDOM.render() 과정을 따로 함수로 추출
+
+
+</script>
+
+</html>
