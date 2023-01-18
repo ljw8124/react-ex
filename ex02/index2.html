@@ -14,7 +14,7 @@
 
 <script type="text/babel">
   const rootDiv = document.querySelector("#root");
-
+  /*
   let counter = 0;
   const countApp = () => {
     counter += 1;
@@ -34,8 +34,31 @@
   // 위 방식은 Container 를 한 번만 랜더링하므로 counter 가 업데이트 되지 않는다.
   // 그러므로 counter 가 업데이트 될 때마다 리랜더링 해주어야 한다 -> countApp 에 render 추가
   // 그 후 코드 재사용을 위해 ReactDOM.render() 과정을 따로 함수로 추출
+  */
 
+  // function countUp() {
+  //   // code
+  // }
 
+  function App() {
+    // const data = React.useState(0);
+    // const counter = data[0];
+    // const countUpFunc = data[1];
+    // 위 방식보다는 구조분해할당을 이용
+
+    let [counter, setCounter] = React.useState(0) // useState 에서 첫 번째 요소는 담으려는 value 이고 두 번째 요소는 value 바꿀 때 필요한 함수이다
+    const onClick = () => {
+      setCounter(counter + 1);
+    };
+    return (
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={onClick}>Click Me</button>
+        </div>
+    );
+  }
+
+  ReactDOM.render(<App />, rootDiv);
 </script>
 
 </html>
