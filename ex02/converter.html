@@ -14,25 +14,25 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script type="text/babel">
-    const App = () => {
-      // ReactJS 에서 input 은 uncontrolled 로 value 값을 통제할 수가 없다. -> 대안 useState 사용
-      const [amount, setAmount] = React.useState(0);
-      const [inverted, setInverted] = React.useState(false);
 
-      const onChange = (event) => {
-        setAmount(event.target.value);
-      }
-      const reset = () => setAmount(0);
-      // const onFlip = () => flipped ? setFlipped(false) : setFlipped(true);
-      // const onFlip = () => setFlipped(!flipped); // state 의 계산 부분을 이런 식으로 하는 것은 좋지 않는 방법이다. current 라는 임의의 변수를 이용하는 것이 더 직관적임
-      const onInverted = () => {
-        reset();
-        setInverted((current) => !current);
-      }
+  const MinutesToHours = () => {
+    // ReactJS 에서 input 은 uncontrolled 로 value 값을 통제할 수가 없다. -> 대안 useState 사용
+    const [amount, setAmount] = React.useState(0);
+    const [inverted, setInverted] = React.useState(false);
 
-      return (
+    const onChange = (event) => {
+      setAmount(event.target.value);
+    }
+    const reset = () => setAmount(0);
+    // const onFlip = () => flipped ? setFlipped(false) : setFlipped(true);
+    // const onFlip = () => setFlipped(!flipped); // state 의 계산 부분을 이런 식으로 하는 것은 좋지 않는 방법이다. current 라는 임의의 변수를 이용하는 것이 더 직관적임
+    const onInverted = () => {
+      reset();
+      setInverted((current) => !current);
+    }
+
+    return (
         <div>
-          <h1 className="tempClass">Super Converter</h1>
           <label htmlFor="minutes">Minutes</label>
           <input
               value={inverted ? amount * 60 : amount}
@@ -54,10 +54,31 @@
           <button onClick={reset}>reset</button>
           <button onClick={onInverted}>{inverted ? "분으로 계산" : "시로 계산"}</button>
         </div>
-      );
-    }
+    );
+  }
+  const KmToMiles = () => {
+    return <h3>Km 2 M</h3>;
+  }
 
-    const root = document.querySelector("#root");
-    ReactDOM.render(<App />, root);
+  const App = () => {
+    const [index, setIndex] = React.useState("0");
+    const onSelect = (e) => {
+      setIndex(e.target.value);
+    }
+    return (
+      <div>
+        <h1>Super Converter</h1>
+        <select value={index} onChange={onSelect}>
+          <option value="0">Minutes & Hours</option>
+          <option value="1">Km & Miles</option>
+        </select>
+        {index === "0" ? <MinutesToHours /> : null}
+        {index === "1" ? <KmToMiles /> : null}
+      </div>
+    );
+  }
+
+  const root = document.querySelector("#root");
+  ReactDOM.render(<App />, root);
 </script>
 </html>
