@@ -17,7 +17,7 @@
     const App = () => {
       // ReactJS 에서 input 은 uncontrolled 로 value 값을 통제할 수가 없다. -> 대안 useState 사용
       const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
+      const [inverted, setInverted] = React.useState(false);
 
       const onChange = (event) => {
         setAmount(event.target.value);
@@ -25,9 +25,9 @@
       const reset = () => setAmount(0);
       // const onFlip = () => flipped ? setFlipped(false) : setFlipped(true);
       // const onFlip = () => setFlipped(!flipped); // state 의 계산 부분을 이런 식으로 하는 것은 좋지 않는 방법이다. current 라는 임의의 변수를 이용하는 것이 더 직관적임
-      const onFlip = () => {
+      const onInverted = () => {
         reset();
-        setFlipped((current) => !current);
+        setInverted((current) => !current);
       }
 
       return (
@@ -35,24 +35,24 @@
           <h1 className="tempClass">Super Converter</h1>
           <label htmlFor="minutes">Minutes</label>
           <input
-              value={flipped ? amount * 60 : amount}
+              value={inverted ? amount * 60 : amount}
               id="minutes"
               placeholder="Minutes"
               type="number"
               onChange={onChange}
-              disabled={flipped}
+              disabled={inverted}
           />
           <label htmlFor="hours">Hours</label>
           <input
-              value={flipped ? amount : Math.round(amount / 60)}
+              value={inverted ? amount : Math.round(amount / 60)}
               id="hours"
               placeholder="Hours"
               type="number"
               onChange={onChange}
-              disabled={!flipped}
+              disabled={!inverted}
           />
           <button onClick={reset}>reset</button>
-          <button onClick={onFlip}>flip</button>
+          <button onClick={onInverted}>{inverted ? "분으로 계산" : "시로 계산"}</button>
         </div>
       );
     }
