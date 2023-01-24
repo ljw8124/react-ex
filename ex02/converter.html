@@ -56,8 +56,36 @@
         </div>
     );
   }
+
   const KmToMiles = () => {
-    return <h3>Km 2 M</h3>;
+    const [amount, setAmount] = React.useState(0);
+    const onChange = (e) => {
+      setAmount(e.target.value);
+    }
+    return (
+        <div>
+          <h3>Km 2 M</h3>
+          <label htmlFor="km">Km</label>
+          <input
+              value={amount}
+              id="km"
+              placeholder="km"
+              type="number"
+              onChange={onChange}
+          />
+          <lable htmlFor="miles">Miles</lable>
+          <input
+              value={amount}
+              id="miles"
+              placeholder="miles"
+              type="number"
+              onChange={onChange}
+          />
+          <button>reset</button>
+          <button>temp</button>
+        </div>
+
+    );
   }
 
   const App = () => {
