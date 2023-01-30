@@ -26,6 +26,7 @@
     const reset = () => setAmount(0);
     // const onFlip = () => flipped ? setFlipped(false) : setFlipped(true);
     // const onFlip = () => setFlipped(!flipped); // state 의 계산 부분을 이런 식으로 하는 것은 좋지 않는 방법이다. current 라는 임의의 변수를 이용하는 것이 더 직관적임
+
     const onInverted = () => {
       reset();
       setInverted((current) => !current);
@@ -59,30 +60,40 @@
 
   const KmToMiles = () => {
     const [amount, setAmount] = React.useState(0);
+    const [inverted, setInverted] = React.useState(false);
     const onChange = (e) => {
       setAmount(e.target.value);
     }
+
+    const reset = () => setAmount(0);
+    const onInvert = () => {
+      reset();
+      setInverted(current => !current);
+    }
+
     return (
         <div>
           <h3>Km 2 M</h3>
           <label htmlFor="km">Km</label>
           <input
-              value={amount}
+              value={inverted ? amount/1.609 : amount}
               id="km"
               placeholder="km"
               type="number"
               onChange={onChange}
+              disabled={inverted}
           />
           <lable htmlFor="miles">Miles</lable>
           <input
-              value={amount}
+              value={inverted ? amount : amount*1.609}
               id="miles"
               placeholder="miles"
               type="number"
               onChange={onChange}
+              disabled={!inverted}
           />
-          <button>reset</button>
-          <button>temp</button>
+          <button onClick={reset}>reset</button>
+          <button onClick={onInvert}>{inverted ? "km로 계산" : "miles로 계산"}</button>
         </div>
 
     );
