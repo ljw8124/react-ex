@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>props example</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+  // function SaveBtn() {
+  //   return <button style={{
+  //     backgroundColor: "blue",
+  //     color: "white",
+  //     padding: "10px 20px",
+  //     border: 0,
+  //     borderRadius: 10
+  //   }}>Save Change</button>
+  // }
+  // function ConfirmBtn() {
+  //   return <button style={{
+  //     backgroundColor: "blue",
+  //     color: "white",
+  //     padding: "10px 20px",
+  //     border: 0,
+  //     borderRadius: 10
+  //   }}>Confirm</button>
+  // }
+
+  function Btn({ text, big }) {
+    return <button style={{
+      backgroundColor: "blue",
+      color: "white",
+      padding: "10px 20px",
+      border: 0,
+      borderRadius: 10,
+      fontSize: big? 19 : 13
+    }}>{text}</button>
+  }
+
+
+  const App = () => {
+    return (
+    <div>
+      <Btn text="Save Change" big={true}/>
+      <Btn text="Confirm" big={false}/>
+    </div>
+    )
+  };
+
+  const root = document.querySelector("#root");
+  ReactDOM.render(<App />, root);
+</script>
+
+</html>
