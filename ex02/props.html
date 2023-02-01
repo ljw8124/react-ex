@@ -32,24 +32,36 @@
   //   }}>Confirm</button>
   // }
 
-  function Btn({ text, big }) {
-    return <button style={{
-      backgroundColor: "blue",
-      color: "white",
-      padding: "10px 20px",
-      border: 0,
-      borderRadius: 10,
-      fontSize: big? 19 : 13
-    }}>{text}</button>
+  function Btn({ text, onClick }) {
+    return(
+        <button
+            onClick={onClick}
+            style={{
+              backgroundColor: "blue",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+            }}
+        >
+          {text}
+        </button>
+    )
   }
-
+  // Memo 는 컴포넌트의 상태를 저장하고 state 가 변경된 부분만을 re-render 되도록 도와준다.
+  const MemorizedBtn = React.memo(Btn);
 
   const App = () => {
+    const [value, setValue] = React.useState("Save Changes");
+    const changeValue = () => setValue("Revert Changes");
+    // 아래의 onClick 은 실제로 eventListener 를 추가한 것이 아니라 props 를 전달할 뿐이다.
+    // 그러므로 아래 Btn 에다가 style 을 추가한다고 해도 html 에서 style 이 추가되는 효과는 나타나지 않는다.
+    // 즉, Btn 컴포넌트에 들어가는 무언가의 값일 뿐이지 eventListener 는 아니다!
     return (
-    <div>
-      <Btn text="Save Change" big={true}/>
-      <Btn text="Confirm" big={false}/>
-    </div>
+      <div>
+        <MemorizedBtn text={value} onClick={changeValue} />
+        <MemorizedBtn text="Confirm" />
+      </div>
     )
   };
 
