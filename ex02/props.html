@@ -10,6 +10,7 @@
 
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script type="text/babel">
@@ -32,7 +33,7 @@
   //   }}>Confirm</button>
   // }
 
-  function Btn({ text, onClick }) {
+  function Btn({ text, onClick, fontSize }) {
     return(
         <button
             onClick={onClick}
@@ -42,6 +43,7 @@
               padding: "10px 20px",
               border: 0,
               borderRadius: 10,
+              fontSize,
             }}
         >
           {text}
@@ -51,6 +53,13 @@
   // Memo 는 컴포넌트의 상태를 저장하고 state 가 변경된 부분만을 re-render 되도록 도와준다.
   const MemorizedBtn = React.memo(Btn);
 
+  // 아래와 같이 prop 의 type 이 무엇인지 명시하면, 잘못된 값을 넣었을 때 console 에서 경고문구를 띄워준다
+  // 타입을 필수로 넣어야하는지 아닌지도 설정할 수 있다.(isRequired)
+  Btn.propTypes = {
+    text: PropTypes.string.isRequired,
+    fontSize: PropTypes.number,
+
+  }
   const App = () => {
     const [value, setValue] = React.useState("Save Changes");
     const changeValue = () => setValue("Revert Changes");
@@ -59,10 +68,13 @@
     // 즉, Btn 컴포넌트에 들어가는 무언가의 값일 뿐이지 eventListener 는 아니다!
     return (
       <div>
-        <MemorizedBtn text={value} onClick={changeValue} />
+        <MemorizedBtn text={value} onClick={changeValue} fontSize={28} />
         <MemorizedBtn text="Confirm" />
       </div>
     )
+    // 만약 팀원또는 나의 부주의로 인해서 text={15} fontSize={value} 로 잘못 전달하는 경우가 생길 수도 있다.
+    // syntax 상으로는 옳은 구문이므로 React 는 Error 로 인식하지 못한다.
+    // 이 때 사용하면 좋은 것이 PropType 이다. 어떤 타입의 prop 을 받고 있는지 체크해주는 역할을 한다.
   };
 
   const root = document.querySelector("#root");
