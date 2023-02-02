@@ -1,10 +1,15 @@
 import Button from './Button';
 import styles from './App.module.css';
+import {useState} from 'react';
 
 function App() {
+  // 현재 코드는 state 가 변경될 때마다 모두 render 되고 있다.
+  const [counter, setValue] = useState(0);
+  const onClick = () => setValue(prev => prev + 1);
+  console.log('render');
   return (
     <div>
-      <h1 className={styles.title}>Welcome back!</h1>
+      <h1 className={styles.title} onClick={onClick}>Welcome back! {counter}</h1>
       <Button text={"continue"}/>
     </div>
   );
