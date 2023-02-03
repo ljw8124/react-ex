@@ -39,3 +39,6 @@ function App() {
 }
 
 export default App;
+
+// cmd 로 리액트 서버 실행방법
+// npx -> npm start
