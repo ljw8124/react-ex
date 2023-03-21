@@ -1,10 +1,11 @@
 // 어떤 동작이 일어나기 이 전에 확인 팝업을 이용하여 점검하는 방법
-const useConfirm = (message = "", callback, rejection) => {
-  if(typeof callback !== "function") return;
+export const useConfirm = (message = "", onConfirm, onCancel) => {
+  if(!onConfirm || typeof onConfirm !== "function") return;
+  if(!onCancel && typeof onCancel !== "function") return;
   
   const confirmAction = () => {
-    if(confirm(message)) callback();
-    else rejection();
+    if(confirm(message)) onConfirm();
+    else onCancel();
   }
   return confirmAction;
 }
