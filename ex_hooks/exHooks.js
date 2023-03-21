@@ -7,3 +7,19 @@
 // 1. useState 에 관하여...
 //    useState 는 초기상태와 변한상태, 그리고 초기값을 셋팅할 수 있는 옵션들을 제공한다.
 //    useState 를 통해 초기값을 설정하고, 변경된 값을 현재 값으로 간단하게 변경해준다.
+
+
+// publishing 하기
+// publishing 할 hooks 의 폴더를 따로 생성한다.
+// npm init 을 실행한다.
+// @woos~/ 형식으로 패키지 네이밍
+// 그 후 줄줄이 실행하고, keywords 를 입력 (ex. hooks, react, title 입력)
+// 그리고 package.json 을 확인해 본다 -> main 이 제대로 존재하는지 확인
+// react i react react-dom 실행하여 제대로 불러오는지 확인
+// dependencies 에서 확인!
+
+// npm 사이트에서 확인 가능
+// npm login
+// npm publish --access public
+
+// 그 후 import 시 @woos~/ 형식으로 저장한 url 을 주면됨!
