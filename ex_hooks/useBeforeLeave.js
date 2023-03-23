@@ -7,6 +7,7 @@ const useBeforeLeave = (onBeforeLeave) => {
     if (clientY <= 0) onBeforeLeave();
   };
   useEffect(() => {
+    // firefox 에서는 mouneleave 가 아닌 mouseout 으로 처리
     document.addEventListener("mouseleave", handle);
     return () => document.removeEventListener("mouseleave", handle); // 함수를 지우기 위해서 return 처리
   }, []); // 단 한 번만 실행
