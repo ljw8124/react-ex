@@ -2,7 +2,7 @@ import defaultAxios from "axios";
 import { useEffect, useState } from "react";
 
 // axiosInstance 가 없다면 defaultAxios 를 이용하여 헤더 설정
-const useAxios = (opts, axiosInstance = defaultAxios) => {
+const useAxios = (opts, axiosInstance = defaultAxios) => {  //dependancy 추가 필요
   const [state, setState] = useState({
     loading: true,
     error: null,
