@@ -19,11 +19,13 @@
 // publishing 하기
 // publishing 할 hooks 의 폴더를 따로 생성한다.
 // npm init 을 실행한다.
+// git repository 주소를 작성한다.
 // @woos~/ 형식으로 패키지 네이밍
 // 그 후 줄줄이 실행하고, keywords 를 입력 (ex. hooks, react, title 입력)
 // 그리고 package.json 을 확인해 본다 -> main 이 제대로 존재하는지 확인
 // react i react react-dom 실행하여 제대로 불러오는지 확인
 // dependencies 에서 확인!
+// 그 후 package.json 에서 useEffect 와 useState 를 바르게 불러오는지 확인 -> dependencies peerDependencies 로 변경
 
 // npm 사이트에서 확인 가능
 // npm login
