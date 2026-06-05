@@ -1,8 +1,65 @@
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import Layout from "./components/layout.tsx";
+import Home from "./routes/home.tsx";
+import Profile from "./routes/profile.tsx";
+import Login from "./routes/login.tsx";
+import CreateAccount from "./routes/create-account.tsx";
+import {createGlobalStyle} from "styled-components";
+import reset from "styled-reset";
+import {useEffect, useState} from "react";
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "Profile",
+        element: <Profile />
+      },
+    ],
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: 'createAccount',
+    element: <CreateAccount />
+  }
+]);
+
+const GlobalStyles = createGlobalStyle`
+  ${reset};
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: black;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  }
+`;
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const init = async () => {
+    // wait for firebase
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+
   return (
     <>
+      <GlobalStyles />
+      <RouterProvider router={router} />
     </>
   )
 }
