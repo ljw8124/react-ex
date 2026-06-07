@@ -1,4 +1,12 @@
+import {auth} from "../firebase.ts";
 
 export default function Home() {
-    return <h1>Home!</h1>
+    const logout = async () => {
+        await auth.signOut();
+    }
+    return (
+        <h1>
+            <button onClick={logout}>Logout</button>
+        </h1>
+    )
 }
